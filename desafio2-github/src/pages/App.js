@@ -28,12 +28,18 @@ function App() {
      alert('Repositorio não encontrado')
   };
 
+  const handleRemoveRepo = (id) => {
+    console.log('Removendo registro', id);
+
+    setRepos((prevRepos) => prevRepos.filter((repo) => repo.id !== id));
+  }
+
   return (
     <Container>
       <img src={gitLogo} width={72} height={72} alt='GitHub logo' />
       <Input value={currentRepo} onChange={(e) => setCurrentRepo(e.target.value)} />
       <Button onClick={handleSearchRepo} />
-      {repos.map((repo) => (<ItemRepo repo={repo} />))}
+      {repos.map((repo) => (<ItemRepo hadleRemoveRepo={handleRemoveRepo} repo={repo} />))}
     </Container>
   );
 }
